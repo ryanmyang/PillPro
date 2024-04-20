@@ -6,7 +6,7 @@ node_modules
 .pnp.js
 /__pycache__
 venv
-
+.env
 # testing
 /coverage
 
