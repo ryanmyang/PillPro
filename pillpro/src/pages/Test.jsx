@@ -9,8 +9,9 @@ function Test() {
   return (
   <div>
     <FileUploader onFileSelect={handleFile}/>
-    <h1>Test</h1>
-    </div>);
+    <h1>Test {process.env.REACT_APP_GEMINI_API_KEY}</h1>
+    </div>
+);
 }
 
 export default Test;
