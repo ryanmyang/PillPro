@@ -1,5 +1,5 @@
 import React from 'react';
-import FileUploader from '../components/FileUploader';
+import ImageUploader from '../components/ImageUploader';
 
 const handleFile = (file) => {
     console.log('Selected file:', file.name);
@@ -8,7 +8,7 @@ const handleFile = (file) => {
 function Test() {
   return (
   <div>
-    <FileUploader onFileSelect={handleFile}/>
+    <ImageUploader onFileSelect={handleFile}/>
     <h1>Test {process.env.REACT_APP_GEMINI_API_KEY}</h1>
     </div>
 );
