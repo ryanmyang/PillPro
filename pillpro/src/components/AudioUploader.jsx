@@ -49,10 +49,9 @@ function AudioUploader() {
     return (
         <ItemCard>
             <Typography variant="h2">Upload your consultation</Typography>
-            <Typography paragraph>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum saepe quis sit,
-                dolorem at minus molestiae quidem corporis asperiores modi quibusdam facere
-                excepturi ullam voluptas nobis qui. Dolorem, in molestias.
+            <Typography paragraph sx={{ whiteSpace: "pre-wrap" }}>
+                Afraid you'll forget something from your consultation? Record your consultation and
+                upload it here!
             </Typography>
 
             <UploadPopup
@@ -66,8 +65,6 @@ function AudioUploader() {
                     <p>Drag and drop an audio file here, or click to select a file</p>
                     <em>(Only valid audio filetypes (mp3, m4a, wav) files are accepted)</em>
                     <aside>
-                        {/* {console.log(acceptedFiles)} */}
-                        {/* <List>{acceptedFileItems}</List> */}
                         <DisplayAudioFiles files={acceptedFiles} />
                         {fileRejections.length > 0 && (
                             <Typography variant="caption">
@@ -78,8 +75,6 @@ function AudioUploader() {
                     </aside>
                 </Box>
             </UploadPopup>
-            {/* {files && files.map((file) => <Typography>{file.path}</Typography>)}
-            {console.log(files)} */}
             <DisplayAudioFiles files={files} />
         </ItemCard>
     );

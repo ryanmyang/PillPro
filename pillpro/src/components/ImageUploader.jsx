@@ -56,10 +56,9 @@ function ImageUploader() {
     return (
         <ItemCard>
             <Typography variant="h2">Upload your prescriptions</Typography>
-            <Typography paragraph>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta sequi consequatur
-                fuga? Libero odit quaerat necessitatibus, ex natus nisi beatae ad magni tempora nam
-                earum sapiente! Nobis dicta recusandae nulla!
+            <Typography paragraph sx={{ whiteSpace: "pre-wrap" }}>
+                Upload one or more photos of your prescribed pills here.{"\n"}
+                Please make sure the photo is clear and the prescription information is visible.
             </Typography>
 
             <UploadPopup
@@ -89,8 +88,6 @@ function ImageUploader() {
             </UploadPopup>
 
             <DisplayImageFiles files={files} inPopup={false} />
-            {/* {files && files.map((file) => <Typography>{file.path}</Typography>)} */}
-            {/* {console.log(files)} */}
         </ItemCard>
     );
 }

@@ -5,13 +5,13 @@ const theme = createTheme({
     typography: {
         fontFamily: [`"Open Sans", "Roboto", "Helvetica", "Arial", sans-serif`],
         h1: {
-            fontSize: "6rem",
+            fontSize: "7rem",
         },
         h2: {
-            fontSize: "3rem",
+            fontSize: "2.5rem",
         },
         h3: {
-            fontSize: "3rem",
+            fontSize: "2rem",
         },
     },
     palette: {

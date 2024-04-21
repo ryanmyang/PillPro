@@ -9,11 +9,19 @@ import WelcomeBar from "../components/WelcomeBar";
 
 function Home() {
     return (
-        <Box sx={{textAlign: "center"}}>
-            <Box sx={{ backgroundColor: "lightgreen", height: "40%", p: "3rem" }}>
+        <Box sx={{ textAlign: "center" }}>
+            <Box sx={{ backgroundColor: "lightgreen", minHeight: "100vh" }} id="welcome-page">
                 <WelcomeBar />
             </Box>
-            <Box sx={{ backgroundColor: "lightblue", height: "100%", py: "1rem", px: "5rem" }}>
+            <Box
+                sx={{
+                    backgroundColor: "lightblue",
+                    height: "100%",
+                    py: "1rem",
+                    px: { xs: "5%", sm: "10%" },
+                }}
+                id="main-page"
+            >
                 <AudioUploader />
                 <FileUploader />
                 <MedicationInfo />
