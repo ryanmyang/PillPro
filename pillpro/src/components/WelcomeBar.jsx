@@ -6,10 +6,17 @@ function WelcomeBar() {
     return (
         <>
             <Box
-                sx={{ px: "5rem", display: "flex", flexDirection: "column", alignItems: "center" }}
+                sx={{
+                    px: "5rem",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    minHeight: "80vh",
+                }}
             >
-                <Box width={{ xs: "70%", sm: "60%", md: "40%" }}>
+                <Box width={{ xs: "70%", sm: "60%", md: "40%" }} height="100%">
                     <Box
+                        id="app-logo"
                         component="img"
                         src="pillai_logo.png"
                         width="100%"
@@ -61,6 +68,16 @@ function WelcomeBar() {
                         document.getElementById("main-page").scrollIntoView({ behavior: "smooth" });
                     }, 5)
                 }
+                onMouseOver={(e) => {
+                    const logo = document.getElementById("app-logo");
+                    logo.style.width = "80%";
+                    logo.src = "pillai_verify.png";
+                }}
+                onMouseOut={(e) => {
+                    const logo = document.getElementById("app-logo");
+                    logo.style.width = "100%";
+                    logo.src = "pillai_logo.png";
+                }}
             >
                 <IconButton style={{ backgroundColor: "transparent" }}>
                     <DownIcon />

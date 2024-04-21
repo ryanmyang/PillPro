@@ -10,12 +10,12 @@ import WelcomeBar from "../components/WelcomeBar";
 function Home() {
     return (
         <Box sx={{ textAlign: "center" }}>
-            <Box sx={{ backgroundColor: "lightgreen", minHeight: "100vh" }} id="welcome-page">
+            <Box sx={{ backgroundColor: "primary.main", minHeight: "100vh" }} id="welcome-page">
                 <WelcomeBar />
             </Box>
             <Box
                 sx={{
-                    backgroundColor: "lightblue",
+                    backgroundColor: "secondary.main",
                     height: "100%",
                     py: "1rem",
                     px: { xs: "5%", sm: "10%" },

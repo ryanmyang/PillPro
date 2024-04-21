@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material";
-import { deepPurple, lightBlue } from "@mui/material/colors";
 
 const theme = createTheme({
     typography: {
@@ -16,20 +15,17 @@ const theme = createTheme({
     },
     palette: {
         background: {
-            default: lightBlue[50],
+            default: "#FAF8ED"
         },
         primary: {
-            main: lightBlue[500],
+            main: "#F3DBDD"
         },
         secondary: {
-            main: lightBlue[50],
+            main: "#FAF8ED"
         },
         dark: {
-            main: lightBlue[900],
-        },
-        alt: {
-            main: lightBlue["A400"],
-        },
+            main: "#A8DACC",
+        }
     },
 });
 
