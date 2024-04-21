@@ -1,49 +1,51 @@
 import React, { useState } from 'react';
 import FileUploader from '../components/FileUploader';
-import { generateMedicineJSON } from '../components/textToJSON';
-import AudioUpload from '../components/AudioUpload';
+import { generateMedicineJSON, getGeminiResponse } from '../components/GetGeminiResponse';
+import GeminiFileUpload from '../components/GeminiFileUpload';
 
 
 const example_text = `
-Analysis of Medication Label
-Based on the image provided, here's an analysis of the medication label:
-Medication Name: ZITHROMAX
-Dosage Form: Tablets, film-coated
-Strength: 250mg
-Quantity: 6 tablets (1 box)
-Instructions: Take 1 tablet twice a day
-Additional Information:
+## transcript of medication box
 
-Patient: JOE BRUIN
-Date: 13/12/2022
-Handwritten note: "Anti-biotic"
-Important Considerations:
-This information is not a substitute for professional medical advice. Always consult with a healthcare professional for guidance on medications.
-Do not take Zithromax without a prescription.
-The handwritten note indicates the medication is an antibiotic. It's crucial to complete the full course as prescribed, even if symptoms improve, to prevent antibiotic resistance.
-Be aware of potential side effects and drug interactions.
-Consult your doctor or pharmacist if you have any questions or concerns 
+the image shows a medication box with the following information: 
+
+* **number of tablets:** 6 film-coated tablets
+* **medical clinic:** my health partners medical clinic 
+* **clinic address:** 25d lorong liput singapore 277735
+* **clinic phone number:** tel: 64590418
+* **medication name:** zithromax tab 250mg
+* **quantity:** 1 box 
+* **dosage instructions:** take 1 tablet/ 2 times a day
+* **type of medication:** anti-biotic
+* **patient id:** 18905 liow jia le caleb
+* **date:** 13/12/2022 
 `
 
-const handleFile = (file) => {
-    console.log('Selected file:', file.name);
-  };
+const instructionPrompt = `use the included prescription description to list all medicines using the following json schema: {'type': 'object','properties': {'medication': {'type': 'string'},'weeklyfrequency': {'type': 'integer'},'dayfrequency': {'type': 'integer'},'frequencydescription': {'type': 'string'},'sideeffects': {'type': 'string'}}}`
+
+const filePrompt = "Evaluate the attached file in detail and produce a transcript of the content."
+
+
+
 
 function Test() {
     const [medicineInfo, setMedicineInfo] = useState('');
 
-  // Event handler to call the generateMedicineJSON function
-  const handleGenerateMedicineInfo = async () => {
-    const info = await generateMedicineJSON(example_text);
-    setMedicineInfo(info);
-  };
+    const getMedicineJSON = async () => {
+        const info = await getGeminiResponse(instructionPrompt, example_text);
+        setMedicineInfo(info);
+    }
 
+    const handleFile = (file) => {
+        console.log('Selected file:', file.name);
+      };
 
   return (
   <div>
     <FileUploader onFileSelect={handleFile}/>
-    <h1>Test {process.env.REACT_APP_GEMINI_API_KEY}</h1>
-    <AudioUpload/>
+    <h1>Test</h1>
+    <button onClick={getMedicineJSON}>test generate medicine</button>
+    <GeminiFileUpload prompt={filePrompt}/>
       {medicineInfo && <div><p>Generated Medicine Info:</p><pre>{medicineInfo}</pre></div>}
     </div>
 );
