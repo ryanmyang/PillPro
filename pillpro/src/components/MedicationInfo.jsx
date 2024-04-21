@@ -111,9 +111,24 @@ const inputJSON = `[
   4. “Prescribed but not dispensed” if they were correctly prescribed by the doctor for the symptoms discussed, but not received from the pharmacist. Include an additional JSON object “Explanation” that explains the intended usage of the medication.`;
   
 
-
 function MedicationRow({ row, idx }) {
     const [open, setOpen] = React.useState(false);
+
+    // Function to determine which icon to display based on verification status
+    const getIcon = (verificationStatus) => {
+        switch (verificationStatus) {
+            case 'Verified':
+                return <CheckBoxIcon color="success" />;
+            case 'Medication not found':
+                return <WarningIcon color="warning" />;
+            case 'Medication not found AND MIGHT BE AN ERROR':
+                return <CancelIcon color="error" />;
+            case 'Prescribed but not dispensed':
+                return <CancelIcon color="error" />;
+            default:
+                return null;
+        }
+    };
 
     return (
         <>
@@ -138,17 +153,14 @@ function MedicationRow({ row, idx }) {
                 <TableCell align="right">{row['FrequencyDescription']}</TableCell>
                 <TableCell align="right">{row['DayFrequency']}</TableCell>
                 <TableCell align="right">{row['Verification Status']}</TableCell>
-                <TableCell><IconButton><CheckBoxIcon></CheckBoxIcon></IconButton></TableCell>
+                <TableCell><IconButton>{getIcon(row['Verification Status'])}</IconButton></TableCell>
             </TableRow>
             {open && (
                 <TableRow>
                     <TableCell colSpan={5}>
                         <Collapse in={open} timeout="auto" unmountOnExit>
                             <Typography>
-                                Side effects include Lorem, ipsum dolor sit amet consectetur
-                                adipisicing elit. Itaque esse nesciunt dignissimos hic maxime
-                                reiciendis recusandae perspiciatis vero labore beatae, dolores
-                                dolor, non laudantium in quaerat, voluptates ad incidunt rerum!
+                                {row['SideEffects']}
                             </Typography>
                         </Collapse>
                     </TableCell>
