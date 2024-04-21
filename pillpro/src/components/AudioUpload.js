@@ -25,11 +25,12 @@ function AudioUpload() {
       console.log("file found")
       const reader = new FileReader();
       reader.onload = function(evt) {
-          const base64Data = evt.target.result.toString("base64"); // Remove the base64 header
-          const mimeType = file.type;
+          const base64Data = evt.target.result.toString("base64").split(',')[1]; // Remove the base64 header
+          console.log(base64Data);
+          const mimeType = 'audio/m4a';
           const generativePart = {
               inlineData: {
-                  data: base64Data.split(':')[1],
+                  data: base64Data ? base64Data: 'BAD',
                   mimeType
               }
           };
@@ -37,15 +38,15 @@ function AudioUpload() {
       };
       reader.readAsDataURL(file);
   }
-    
-
+  
   }, [file]);
 
   async function processFilePart() {
     if (filePart) {
-      console.log(`File part found, ${JSON.stringify(filePart)}`)
+      console.log(`File part found, ${JSON.stringify(filePart)}`);
+      console.log(filePart.data);
       const result = await audioToTranscript(filePart);
-      console.log(result.text())
+      console.log(result)
     }
   }
   useEffect(() => {
