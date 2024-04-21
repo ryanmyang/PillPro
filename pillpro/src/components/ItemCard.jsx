@@ -12,8 +12,8 @@ const Item = styled(Paper)(({ theme }) => ({
 
 function ItemCard({ children }) {
     return (
-        <Item>
-            <Card sx={{ my: "1rem" }}>
+        <Item sx={{ borderRadius: "2rem" }}>
+            <Card sx={{ my: "1rem", borderRadius: "2rem" }}>
                 <CardContent>{children}</CardContent>
             </Card>
         </Item>

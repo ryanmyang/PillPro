@@ -1,27 +1,26 @@
-import { Box, Button } from "@mui/material";
-import IconButton from "@mui/material/IconButton";
-import Tooltip from "@mui/material/Tooltip";
-import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 import React from "react";
+
+import AudioUploader from "../components/AudioUploader";
+import Footer from "../components/Footer";
 import FileUploader from "../components/ImageUploader";
-import ItemCard from "../components/ItemCard";
+import MedicationInfo from "../components/MedicationInfo";
 import WelcomeBar from "../components/WelcomeBar";
 
 function Home() {
     return (
-        <Box sx={{ backgroundColor: "lightblue", height: "100%", minHeight: "100vh", p: "3rem" }}>
-            <WelcomeBar />
-            <FileUploader />
-
-            {/* <ItemCard>
-				<Box>
-					Hello
-					<Button type="submit">S</Button>
-				</Box>
-			</ItemCard> */}
+        <Box sx={{textAlign: "center"}}>
+            <Box sx={{ backgroundColor: "lightgreen", height: "40%", p: "3rem" }}>
+                <WelcomeBar />
+            </Box>
+            <Box sx={{ backgroundColor: "lightblue", height: "100%", py: "1rem", px: "5rem" }}>
+                <AudioUploader />
+                <FileUploader />
+                <MedicationInfo />
+                <Footer />
+            </Box>
         </Box>
     );
-    // return <h1>Welcome to the Home Page</h1>;
 }
 
 export default Home;

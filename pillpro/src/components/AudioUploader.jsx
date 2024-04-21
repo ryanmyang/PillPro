@@ -1,16 +1,20 @@
-import PhotoIcon from "@mui/icons-material/AddPhotoAlternate";
+import AudioIcon from "@mui/icons-material/KeyboardVoice";
 import { Box, List, ListItem, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import ItemCard from "./ItemCard";
 import UploadPopup from "./UploadPopup";
 
-function ImageUploader() {
+function AudioUploader() {
     const [files, setFiles] = useState(null);
     const { acceptedFiles, fileRejections, getRootProps, getInputProps } = useDropzone({
+        maxFiles: 1,
         accept: {
-            "image/jpg": [".jpg", ".jpeg"],
-            "image/png": [".png"],
+            "audio/mpeg": [".mp3"],
+            "audio/wav": [".wav"],
+            "audio/webm": [".webm"],
+            "audio/flac": [".flac"],
+            "audio/x-m4a": [".m4a"],
         },
     });
 
@@ -19,12 +23,6 @@ function ImageUploader() {
             <Typography>
                 {file.path} - {file.size} bytes
             </Typography>
-            <Box
-                component="img"
-                src={URL.createObjectURL(file)}
-                alt={file.path}
-                sx={{ width: "50%" }}
-            />
         </ListItem>
     ));
 
@@ -41,28 +39,25 @@ function ImageUploader() {
 
     return (
         <ItemCard>
-            <Typography variant="h2">Upload your prescriptions</Typography>
+            <Typography variant="h2">Upload your consultation</Typography>
             <Typography paragraph>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta sequi consequatur
-                fuga? Libero odit quaerat necessitatibus, ex natus nisi beatae ad magni tempora nam
-                earum sapiente! Nobis dicta recusandae nulla!
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum saepe quis sit,
+                dolorem at minus molestiae quidem corporis asperiores modi quibusdam facere
+                excepturi ullam voluptas nobis qui. Dolorem, in molestias.
             </Typography>
 
-            <UploadPopup icon={<PhotoIcon />} handleSubmit={handleSubmit} handleReset={handleReset}>
+            <UploadPopup icon={<AudioIcon />} handleSubmit={handleSubmit} handleReset={handleReset}>
                 <Box {...getRootProps({ className: "dropzone" })}>
-                    <Typography variant="h4">Upload your prescriptions</Typography>
+                    <Typography variant="h4">Upload your consultation</Typography>
                     <input {...getInputProps()} />
-                    <p>Drag and drop some files here, or click to select files</p>
-                    <em>(Only *.jpg and *.png images are accepted)</em>
+                    <p>Drag and drop an audio file here, or click to select a file</p>
+                    <em>(Only valid audio filetypes (mp3, m4a, wav) files are accepted)</em>
                     <aside>
                         {/* {console.log(acceptedFiles)} */}
-                        <h4>Accepted files</h4>
                         <List>{acceptedFileItems}</List>
                         {fileRejections.length > 0 && (
-                            <Typography variant="caption">Only images are supported</Typography>
+                            <Typography variant="caption">Filetype is not supported</Typography>
                         )}
-                        {/* <h4>Rejected files</h4>
-                <List>{rejectedFileItems}</List> */}
                     </aside>
                 </Box>
             </UploadPopup>
@@ -72,4 +67,4 @@ function ImageUploader() {
     );
 }
 
-export default ImageUploader;
+export default AudioUploader;

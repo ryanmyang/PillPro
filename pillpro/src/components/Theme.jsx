@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material";
-import { deepPurple } from "@mui/material/colors";
+import { deepPurple, lightBlue } from "@mui/material/colors";
 
 const theme = createTheme({
     typography: {
@@ -8,7 +8,7 @@ const theme = createTheme({
             fontSize: "6rem",
         },
         h2: {
-            fontSize: "4rem",
+            fontSize: "3rem",
         },
         h3: {
             fontSize: "3rem",
@@ -16,19 +16,19 @@ const theme = createTheme({
     },
     palette: {
         background: {
-            default: deepPurple[50],
+            default: lightBlue[50],
         },
         primary: {
-            main: deepPurple[500],
+            main: lightBlue[500],
         },
         secondary: {
-            main: deepPurple[50],
+            main: lightBlue[50],
         },
         dark: {
-            main: deepPurple[900],
+            main: lightBlue[900],
         },
         alt: {
-            main: deepPurple["A400"],
+            main: lightBlue["A400"],
         },
     },
 });
