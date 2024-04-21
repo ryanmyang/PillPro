@@ -1,0 +1,35 @@
+[
+    {
+        "name": "Telfast D",
+        "dosage": "1 tablet",
+        "frequency": "2 times a day",
+        "daily_frequency": 2,
+        "side_effects": "May cause drowsiness, dry mouth, headache",
+        "verification_status": "Medication not found",
+        "possible_use": {
+            "explanation": "This medication is typically used for allergy relief, such as for a runny or blocked nose. While the patient mentioned stomach pain and diarrhea, there was no mention of allergy symptoms."
+        }
+    },
+    {
+        "name": "DHA Sedyl Syrup & Salbutamol Syrup",
+        "dosage": "10 ml",
+        "frequency": "3 times a day",
+        "daily_frequency": 3,
+        "side_effects": "May cause tremors, increased heart rate, dizziness",
+        "verification_status": "Medication not found AND MIGHT BE AN ERROR",
+        "possible_use": {
+            "explanation": "This combination of medications is typically used for respiratory conditions, such as asthma or bronchitis. There was no mention of any respiratory issues in the transcript."
+        }
+    },
+    {
+        "name": "Zithromax",
+        "dosage": "1 tablet",
+        "frequency": "2 times a day",
+        "daily_frequency": 2,
+        "side_effects": "May cause nausea, diarrhea, abdominal pain",
+        "verification_status": "Medication not found",
+        "possible_use": {
+            "explanation": "This medication is an antibiotic and is used to treat a variety of bacterial infections. While the patient's symptoms could potentially be caused by a bacterial infection, the doctor suspected food poisoning and prescribed a different medication."
+        }
+    }
+]

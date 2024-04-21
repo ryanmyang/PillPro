@@ -1,15 +1,18 @@
-import logo from './logo.svg';
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Home from './pages/Home';
-import Test from './pages/Test';
+import { ThemeProvider, createTheme } from "@mui/material";
+import React from "react";
+import { Link, Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import theme from "./components/Theme";
+import logo from "./logo.svg";
+import Home from "./pages/Home";
+import Test from "./pages/Test";
 
 function App() {
-  return (
-    <Router>
-      <div>
-        {/* Nav bar hidden*/}
-        {/* <nav>
+    return (
+        <ThemeProvider theme={theme}>
+            <Router>
+                <div>
+                    {/* Nav bar hidden*/}
+                    {/* <nav>
           <ul>
             <li>
               <Link to="/">Home</Link>
@@ -20,15 +23,16 @@ function App() {
           </ul>
         </nav> */}
 
-        {/* A <Routes> component that checks its children <Route> components
+                    {/* A <Routes> component that checks its children <Route> components
             and renders the one that matches the current URL. */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/test" element={<Test />} />
-        </Routes>
-      </div>
-    </Router>
-  );
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/test" element={<Test />} />
+                    </Routes>
+                </div>
+            </Router>
+        </ThemeProvider>
+    );
 }
 
 export default App;
