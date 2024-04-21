@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-const genAI = new GoogleGenerativeAI('AIzaSyCuToUOpvZLLXEqpsiJY5KfYsOZf6ACth8');
+const genAI = new GoogleGenerativeAI('AIzaSyAbj9yEuWnrsxORhs6BtE35YKo3Fp0X4Po');
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest"});
      
 

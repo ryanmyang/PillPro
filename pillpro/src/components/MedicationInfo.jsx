@@ -103,9 +103,9 @@ const instructionPrompt2 = `Transcript of Doctor Patient.txt is a transcript of 
   
   For verification status, verify each of them with the transcript of my doctor’s visit and known information about each medication, and display it as one of five options: 
   1. "Verified"
-  2. "Medication not found", if the medication could be for some medical conditions mentioned in the transcript. Include an additional JSON object “Explanation” that explains what this medication could be used for. 
-  3. "Medication not found AND MIGHT BE AN ERROR", if no corresponding or relevant medical conditions were mentioned in the transcript. Include an additional JSON object “Explanation” that explains why this conclusion was reached. 
-  4. “Prescribed but not dispensed” if they were correctly prescribed by the doctor for the symptoms discussed, but not received from the pharmacist. Include an additional JSON object “Explanation” that explains the intended usage of the medication.`;
+  2. "Not mentioned", if the medication could be for some medical conditions mentioned in the transcript. Include an additional JSON object “Explanation” that explains what this medication could be used for. 
+  3. "Not prescribed and LIKELY AN ERROR", if no corresponding or relevant medical conditions were mentioned in the transcript. Include an additional JSON object “Explanation” that explains why this conclusion was reached. 
+  4. “Verbally prescribed but did not receive” if they were correctly prescribed by the doctor for the symptoms discussed, but not received from the pharmacist. Include an additional JSON object “Explanation” that explains the intended usage of the medication.`;
 
 function MedicationRow({ row, idx }) {
     const [open, setOpen] = React.useState(false);
@@ -115,13 +115,14 @@ function MedicationRow({ row, idx }) {
         switch (verificationStatus) {
             case "Verified":
                 return <CheckBoxIcon color="success" />;
-            case "Medication not found":
+            case "Not mentioned":
                 return <WarningIcon color="warning" />;
-            case "Medication not found AND MIGHT BE AN ERROR":
+            case "Not prescribed and LIKELY AN ERROR":
                 return <CancelIcon color="error" />;
-            case "Prescribed but not dispensed":
+            case "Verbally prescribed but did not receive":
                 return <CancelIcon color="error" />;
             default:
+                console.log("default" + verificationStatus)
                 return null;
         }
     };

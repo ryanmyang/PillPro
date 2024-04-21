@@ -9,14 +9,10 @@ import MedicationInfo from "../components/MedicationInfo";
 import { Verification } from "../components/Verification";
 import WelcomeBar from "../components/WelcomeBar";
 
-const instructionPrompt2 = `Transcript of Doctor Patient.txt is a transcript of an audio recording of my doctor’s visit. medications_json.txt is a list of medications I received from the pharmacist. 
+const instructionPrompt2 = `Transcript of Doctor Patient.txt is a transcript of an audio recording of my doctor's visit. medications_json.txt is a list of medications I received from the pharmacist. 
 Append the JSON object 'Verification Status': {'type': 'string'} to medications_json.txt.
 
-For verification status, verify each of them with the transcript of my doctor’s visit and known information about each medication, and display it as one of five options: 
-1. "Verified"
-2. "Medication not found", if the medication could be for some medical conditions mentioned in the transcript. Include an additional JSON object “Explanation” that explains what this medication could be used for. 
-3. "Medication not found AND MIGHT BE AN ERROR", if no corresponding or relevant medical conditions were mentioned in the transcript. Include an additional JSON object “Explanation” that explains why this conclusion was reached. 
-4. “Prescribed but not dispensed” if they were correctly prescribed by the doctor for the symptoms discussed, but not received from the pharmacist. Include an additional JSON object “Explanation” that explains the intended usage of the medication.`;
+For verification status, verify each of them with the transcript of my doctor's visit and known information about each medication, and display it as one of five options: 1 "Verified" 2 "Not mentioned", if the medication could be for some medical conditions mentioned in the transcript. Include an additional JSON object "Explanation" that explains what this medication could be used for. 3 "Not prescribed and LIKELY AN ERROR", if no corresponding or relevant medical conditions were mentioned in the transcript. Include an additional JSON object "Explanation" that explains why this conclusion was reached 4. "Verbally prescribed but did not receive" if they were correctly prescribed by the doctor for the symptoms discussed, but not received from the pharmacist. Include an additional JSON object "Explanation" that explains the intended usage of the medication. `;
 
 
 function Home() {
@@ -56,7 +52,7 @@ function Home() {
     }, [imageJSON]);
     
     useEffect(() => {
-        console.log("Verification info updated: \n" + JSON.stringify(verificationInfo))
+        console.log("Verification info updated: \n" + verificationInfo)
         setLoadingIconVisible(false);
     }, [verificationInfo])
     
