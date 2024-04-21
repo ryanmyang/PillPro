@@ -11,7 +11,7 @@ function Home() {
     return (
         <Box sx={{textAlign: "center"}}>
             <Box sx={{ backgroundColor: "lightgreen", height: "40%", p: "3rem" }}>
-                <WelcomeBar />
+                <WelcomeBar />  
             </Box>
             <Box sx={{ backgroundColor: "lightblue", height: "100%", py: "1rem", px: "5rem" }}>
                 <AudioUploader />

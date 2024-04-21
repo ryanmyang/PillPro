@@ -72,6 +72,27 @@ Doctor: Of course, happy to help. I'll have them prepare Dhasedyl and Salbutamol
 Patient: All right, thank you doctor.
 Doctor: Okay, bye.`;
 
+const inputTranscript2 = `P: Hello doctor. Um, I've been having some stomach pain and diarrhea for the past couple days. It's pretty it's quite uncomfortable.
+D: Oh, I'm sorry to hear that. That must be really annoying. Can you describe the pain a bit more? Is it constant or does it come and go?
+P: Oh, it's kind of like a cramping pain, just comes and goes, but it's pretty frequent. The diarrhea, yeah, pretty frequent too.
+D: Have you noticed anything that makes it worse? Like eating specific foods or stress or anything like that?
+P: Oh, yeah, yeah. Um, it gets worse after meals, but I'm not too sure like which foods though.
+D: Uh, okay, hmm. What about, uh, what about like fever or chills? Or do you have any recent travel or unusual meals?
+P: Uh, no. It's just like no fevers, haven't really traveled. Um, just tried like one new restaurant this weekend, but that's about it.
+D: Uh, this weekend? Okay, uh, I see. It's possible that it could be a foodborne illness, especially if it started right after you ate out this past weekend. Um, have you taken any medication to manage the pain or anything like that so far?
+P: Nah, uh, just some over-the-counter anti-acids and a lot of water, but it doesn't really help.
+D: Okay. Well, it's good you're staying hydrated, you should keep doing that. Um, but in the meantime, I'll prescribe you a medication to help manage the diarrhea and relieve the cramping. It's called Loperamide. You'll also need to keep drinking plenty of fluids to avoid dehydration.
+P: Oh, uh, how often should I take take that?
+D: You can take it after eats each loose stool, but don't exceed four doses in in a day. If you don't see any improvement in the next 48 hours or if your symptoms worsen, I want you to call me or visit the ER.
+P: Okay, okay. Um, sure. Is there anything else I should not eat or like maybe eat to help it?
+D: Yeah, yeah. So just for now, stick to bland foods like toast, rice, bananas, and applesauce. And also avoid milk or dairy products, fat, and anything too spicy or seasoned until your symptoms improve because they could make it worse.
+P: Okay, um, sure. Is there anything I should I be worried if something like happens like if it gets more serious, I guess?
+D: Uh, usually you should be okay. It'll probably be fine with simple treatment and diet adjustments, and it'll just go away. But we'll keep an eye on your symptoms. If the medication doesn't help or if you get new symptoms or anything changes and it gets worse like more pain, vomiting, or a fever, then you might want to come back for further investigations.
+P: Oh, okay. Yeah, sure. Uh thanks doc. Um thanks thanks.
+D: Yep. Make sure to rest and take the medication as directed. And call back if you have any questions or concerns.
+P: Yep, yep. Alright, thank you again.
+D: Bye-bye.
+P: Bye.`
 
 
 const instructionPrompt = `use the included prescription description to list all medicines using the following json schema: {'type': 'object','properties': {'medication': {'type': 'string'},'weeklyfrequency': {'type': 'integer'},'dayfrequency': {'type': 'integer'},'frequencydescription': {'type': 'string'},'sideeffects': {'type': 'string'}}}`
@@ -99,7 +120,7 @@ function Test() {
     }
     
     const getVerification = async () => {
-      const info = await Verification(instructionPrompt2, inputJSON, inputTranscript);
+      const info = await Verification(instructionPrompt2, inputJSON, inputTranscript2);
       setVerificationInfo(info);
     }
 
