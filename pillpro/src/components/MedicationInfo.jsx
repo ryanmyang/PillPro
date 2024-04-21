@@ -171,21 +171,21 @@ function MedicationRow({ row, idx }) {
 }
 
 
-function MedicationInfo() {
+function MedicationInfo( {verificationInfo}) {
     const [data, setData] = useState([]);
-    const [verificationInfo, setVerificationInfo] = useState('');
+    // const [verificationInfo, setVerificationInfo] = useState('');
 
-    useEffect(() => {
-        const getVerification = async () => {
-            try {
-                const info = await Verification(instructionPrompt2, inputJSON, inputTranscript2);
-                setVerificationInfo(info); // info is good
-            } catch (error) {
-                console.error('Error getting verification:', error);
-            }
-        };
-        // getVerification();
-    }, []);
+    // useEffect(() => {
+    //     const getVerification = async () => {
+    //         try {
+    //             const info = await Verification(instructionPrompt2, inputJSON, inputTranscript2);
+    //             setVerificationInfo(info); // info is good
+    //         } catch (error) {
+    //             console.error('Error getting verification:', error);
+    //         }
+    //     };
+    //     // getVerification();
+    // }, []);
 
     // Function to parse the JSON text file into an array of objects
     const parseVerificationInfo = () => {

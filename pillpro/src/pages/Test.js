@@ -119,10 +119,10 @@ function Test() {
         setMedicineInfo(info);
     }
     
-    const getVerification = async () => {
-      const info = await Verification(instructionPrompt2, inputJSON, inputTranscript2);
-      setVerificationInfo(info);
-    }
+    // const getVerification = async () => {
+    //   const info = await Verification(instructionPrompt2, inputJSON, inputTranscript2);
+    //   setVerificationInfo(info);
+    // }
 
     const handleFile = (file) => {
         console.log('Selected file:', file.name);
@@ -133,7 +133,7 @@ function Test() {
     <FileUploader onFileSelect={handleFile}/>
     <h1>Test</h1>
     <button onClick={getMedicineJSON}>test generate medicine</button>
-    <button onClick={getVerification}>Verify!</button>
+    {/* <button onClick={getVerification}>Verify!</button> */}
 
     <GeminiFileUpload prompt={filePrompt}/>
     <GeminiFileUpload prompt={filePrompt}/>
