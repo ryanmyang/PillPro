@@ -1,8 +1,8 @@
+import CancelIcon from "@mui/icons-material/Cancel";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import WarningIcon from '@mui/icons-material/Warning';
-import CancelIcon from '@mui/icons-material/Cancel';
+import WarningIcon from "@mui/icons-material/Warning";
 import {
     Box,
     Collapse,
@@ -21,9 +21,7 @@ import {
 import React, { useEffect, useState } from "react";
 //import data from "../data.json";
 import ItemCard from "./ItemCard";
-import { Verification } from './Verification';
-
-
+import { Verification } from "./Verification";
 
 const inputJSON = `[
     {
@@ -51,8 +49,8 @@ const inputJSON = `[
       "SideEffects": "Common side effects of Telfast D can include headache, drowsiness, and dry mouth. More serious side effects can occur, so it is important to talk to your doctor about the risks and benefits of taking Telfast D before starting treatment."
     }
   ]`;
-  
-  const inputTranscript = `Transcript of Doctor-Patient Interaction Regarding Allergy and Sinus Symptoms
+
+const inputTranscript = `Transcript of Doctor-Patient Interaction Regarding Allergy and Sinus Symptoms
   Patient: (Sounds unwell) Um, not too great to be honest. I'm having an awful runny nose, sneezing, and my eyes are all watery. Um, it's just really bad.
   Doctor: I'm sorry to hear that. How long have you been experiencing these symptoms?
   Patient: Uh, about a week now, but it's getting worse. Uh, I'm losing sleep because of it as well.
@@ -73,8 +71,8 @@ const inputJSON = `[
   Doctor: Of course, happy to help. I'll have them prepare Dhasedyl and Salbutamol as a mixture syrup together. Just make sure to take these medications as directed. And if you have any concerns or symptoms worsen, don't hesitate to give us a call.
   Patient: All right, thank you doctor.
   Doctor: Okay, bye.`;
-  
-  const inputTranscript2 = `P: Hello doctor. Um, I've been having some stomach pain and diarrhea for the past couple days. It's pretty it's quite uncomfortable.
+
+const inputTranscript2 = `P: Hello doctor. Um, I've been having some stomach pain and diarrhea for the past couple days. It's pretty it's quite uncomfortable.
   D: Oh, I'm sorry to hear that. That must be really annoying. Can you describe the pain a bit more? Is it constant or does it come and go?
   P: Oh, it's kind of like a cramping pain, just comes and goes, but it's pretty frequent. The diarrhea, yeah, pretty frequent too.
   D: Have you noticed anything that makes it worse? Like eating specific foods or stress or anything like that?
@@ -94,14 +92,13 @@ const inputJSON = `[
   D: Yep. Make sure to rest and take the medication as directed. And call back if you have any questions or concerns.
   P: Yep, yep. Alright, thank you again.
   D: Bye-bye.
-  P: Bye.`
-  
-  
-  const instructionPrompt = `use the included prescription description to list all medicines using the following json schema: {'type': 'object','properties': {'medication': {'type': 'string'},'weeklyfrequency': {'type': 'integer'},'dayfrequency': {'type': 'integer'},'frequencydescription': {'type': 'string'},'sideeffects': {'type': 'string'}}}`
-  
-  const filePrompt = "Evaluate the attached file in detail and produce a transcript of the content."
-  
-  const instructionPrompt2 = `Transcript of Doctor Patient.txt is a transcript of an audio recording of my doctor’s visit. medications_json.txt is a list of medications I received from the pharmacist. 
+  P: Bye.`;
+
+const instructionPrompt = `use the included prescription description to list all medicines using the following json schema: {'type': 'object','properties': {'medication': {'type': 'string'},'weeklyfrequency': {'type': 'integer'},'dayfrequency': {'type': 'integer'},'frequencydescription': {'type': 'string'},'sideeffects': {'type': 'string'}}}`;
+
+const filePrompt = "Evaluate the attached file in detail and produce a transcript of the content.";
+
+const instructionPrompt2 = `Transcript of Doctor Patient.txt is a transcript of an audio recording of my doctor’s visit. medications_json.txt is a list of medications I received from the pharmacist. 
   Append the JSON object 'Verification Status': {'type': 'string'} to medications_json.txt.
   
   For verification status, verify each of them with the transcript of my doctor’s visit and known information about each medication, and display it as one of five options: 
@@ -109,7 +106,6 @@ const inputJSON = `[
   2. "Medication not found", if the medication could be for some medical conditions mentioned in the transcript. Include an additional JSON object “Explanation” that explains what this medication could be used for. 
   3. "Medication not found AND MIGHT BE AN ERROR", if no corresponding or relevant medical conditions were mentioned in the transcript. Include an additional JSON object “Explanation” that explains why this conclusion was reached. 
   4. “Prescribed but not dispensed” if they were correctly prescribed by the doctor for the symptoms discussed, but not received from the pharmacist. Include an additional JSON object “Explanation” that explains the intended usage of the medication.`;
-  
 
 function MedicationRow({ row, idx }) {
     const [open, setOpen] = React.useState(false);
@@ -117,13 +113,13 @@ function MedicationRow({ row, idx }) {
     // Function to determine which icon to display based on verification status
     const getIcon = (verificationStatus) => {
         switch (verificationStatus) {
-            case 'Verified':
+            case "Verified":
                 return <CheckBoxIcon color="success" />;
-            case 'Medication not found':
+            case "Medication not found":
                 return <WarningIcon color="warning" />;
-            case 'Medication not found AND MIGHT BE AN ERROR':
+            case "Medication not found AND MIGHT BE AN ERROR":
                 return <CancelIcon color="error" />;
-            case 'Prescribed but not dispensed':
+            case "Prescribed but not dispensed":
                 return <CancelIcon color="error" />;
             default:
                 return null;
@@ -134,7 +130,7 @@ function MedicationRow({ row, idx }) {
         <>
             <TableRow key={row.name} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                 <TableCell component="th">
-                    <Grid container direction="row" justifyContent="flex-end" alignItems="center">
+                    <Grid container direction="row" justifyContent="flex-end" alignItems="center" width="3rem">
                         <IconButton
                             aria-label="expand row"
                             size="small"
@@ -150,18 +146,18 @@ function MedicationRow({ row, idx }) {
                 <TableCell component="th" scope="row">
                     {row.Name}
                 </TableCell>
-                <TableCell align="right">{row['FrequencyDescription']}</TableCell>
+                <TableCell align="right">{row["FrequencyDescription"]}</TableCell>
                 {/* <TableCell align="right">{row['DayFrequency']}</TableCell> */}
-                <TableCell align="right">{row['Verification Status']}</TableCell>
-                <TableCell><IconButton>{getIcon(row['Verification Status'])}</IconButton></TableCell>
+                <TableCell align="right">{row["Verification Status"]}</TableCell>
+                <TableCell>
+                    <IconButton>{getIcon(row["Verification Status"])}</IconButton>
+                </TableCell>
             </TableRow>
             {open && (
                 <TableRow>
                     <TableCell colSpan={5}>
                         <Collapse in={open} timeout="auto" unmountOnExit>
-                            <Typography>
-                                {row['SideEffects']}
-                            </Typography>
+                            <Typography>{row["SideEffects"]}</Typography>
                         </Collapse>
                     </TableCell>
                 </TableRow>
@@ -170,8 +166,7 @@ function MedicationRow({ row, idx }) {
     );
 }
 
-
-function MedicationInfo( {verificationInfo}) {
+function MedicationInfo({ verificationInfo }) {
     const [data, setData] = useState([]);
     // const [verificationInfo, setVerificationInfo] = useState('');
 
@@ -194,7 +189,7 @@ function MedicationInfo( {verificationInfo}) {
             const parsedInfo = JSON.parse(verificationInfo);
             return parsedInfo;
         } catch (error) {
-            console.error('Error parsing verification info:', error);
+            console.error("Error parsing verification info:", error);
             return [];
         }
     };
@@ -206,9 +201,9 @@ function MedicationInfo( {verificationInfo}) {
         setData(parsedData); // Assuming you have a setData function to set the table data
     }, [verificationInfo]);
 
-      // Log data when it changes
+    // Log data when it changes
     useEffect(() => {
-        console.log('Data:', data);
+        console.log("Data:", data);
     }, [data]);
 
     return (
@@ -216,25 +211,31 @@ function MedicationInfo( {verificationInfo}) {
             <Typography variant="h2" sx={{ pb: "1rem" }}>
                 Your prescription summary
             </Typography>
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }}>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell />
-                            <TableCell>Medication</TableCell>
-                            <TableCell align="right">Dosage</TableCell>
-                            {/* <TableCell align="right">Frequency</TableCell> */}
-                            <TableCell></TableCell>
-                            <TableCell align="right">Verified</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {data.map((row, idx) => (
-                            <MedicationRow row={row} idx={idx} />
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+            {data?.length > 0 ? (
+                <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 650 }}>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell />
+                                <TableCell>Medication</TableCell>
+                                <TableCell align="right">Dosage</TableCell>
+                                {/* <TableCell align="right">Frequency</TableCell> */}
+                                <TableCell></TableCell>
+                                <TableCell align="right">Verified</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {data.map((row, idx) => (
+                                <MedicationRow row={row} idx={idx} key={idx} />
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            ) : (
+                <Typography paragraph>
+                    No prescription to verify. Try uploading a recording and some images!
+                </Typography>
+            )}
         </ItemCard>
     );
 }

@@ -34,8 +34,8 @@ export default function UploadPopup({ icon, handleSubmit, handleCancel, children
             >
                 <DialogContent>{children}</DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleUpload} autoFocus>
+                    <Button onClick={handleClose} color="dark">Cancel</Button>
+                    <Button onClick={handleUpload} color="dark" autoFocus>
                         Upload
                     </Button>
                 </DialogActions>

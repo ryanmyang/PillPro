@@ -8,7 +8,7 @@ async function Verification(instructionPrompt, inputJSON, inputTranscript) {
     // Call getGeminiResponse with the instruction prompt and concatenated inputJSON and inputTranscript
     const geminiResponse = await getGeminiResponse(instructionPrompt, `${inputJSONString}\n${inputTranscript}`);
     
-    const jsonString = geminiResponse.replace(/```json|```/g, '').trim();
+    const jsonString = geminiResponse?.replace(/```json|```/g, '').trim();
     // Return the Gemini response
     return jsonString;
   }

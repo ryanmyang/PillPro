@@ -22,7 +22,7 @@ function WelcomeBar() {
                         width="100%"
                         sx={{ pt: "4rem" }}
                         onMouseOver={(e) => {
-                            e.currentTarget.style.width = "90%";
+                            e.currentTarget.style.width = "80%";
                             e.currentTarget.src = "pillai_verify.png";
                         }}
                         onMouseOut={(e) => {
@@ -68,16 +68,16 @@ function WelcomeBar() {
                         document.getElementById("main-page").scrollIntoView({ behavior: "smooth" });
                     }, 5)
                 }
-                onMouseOver={(e) => {
-                    const logo = document.getElementById("app-logo");
-                    logo.style.width = "80%";
-                    logo.src = "pillai_verify.png";
-                }}
-                onMouseOut={(e) => {
-                    const logo = document.getElementById("app-logo");
-                    logo.style.width = "100%";
-                    logo.src = "pillai_logo.png";
-                }}
+                // onMouseOver={(e) => {
+                //     const logo = document.getElementById("app-logo");
+                //     logo.style.width = "80%";
+                //     logo.src = "pillai_verify.png";
+                // }}
+                // onMouseOut={(e) => {
+                //     const logo = document.getElementById("app-logo");
+                //     logo.style.width = "100%";
+                //     logo.src = "pillai_logo.png";
+                // }}
             >
                 <IconButton style={{ backgroundColor: "transparent" }}>
                     <DownIcon />
