@@ -57,14 +57,22 @@ function Home() {
     }, [verificationInfo])
 
     return (
-        <Box sx={{textAlign: "center"}}>
-            <Box sx={{ backgroundColor: "lightgreen", height: "40%", p: "3rem" }}>
-                <WelcomeBar />  
+        <Box sx={{ textAlign: "center" }}>
+            <Box sx={{ backgroundColor: "primary.main", minHeight: "100vh" }} id="welcome-page">
+                <WelcomeBar />
             </Box>
-            <Box sx={{ backgroundColor: "lightblue", height: "100%", py: "1rem", px: "5rem" }}>
-                <AudioUploader setAudio={handleSetAudioTranscript} />
-                <FileUploader setImageData={handleSetImageData}/>
-                <MedicationInfo verificationInfo={verificationInfo}/>
+            <Box
+                sx={{
+                    backgroundColor: "secondary.main",
+                    height: "100%",
+                    py: "1rem",
+                    px: { xs: "5%", sm: "10%" },
+                }}
+                id="main-page"
+            >
+                <AudioUploader />
+                <FileUploader />
+                <MedicationInfo />
                 <Footer />
             </Box>
         </Box>

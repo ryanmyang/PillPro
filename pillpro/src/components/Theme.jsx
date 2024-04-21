@@ -1,35 +1,31 @@
 import { createTheme } from "@mui/material";
-import { deepPurple, lightBlue } from "@mui/material/colors";
 
 const theme = createTheme({
     typography: {
         fontFamily: [`"Open Sans", "Roboto", "Helvetica", "Arial", sans-serif`],
         h1: {
-            fontSize: "6rem",
+            fontSize: "7rem",
         },
         h2: {
-            fontSize: "3rem",
+            fontSize: "2.5rem",
         },
         h3: {
-            fontSize: "3rem",
+            fontSize: "2rem",
         },
     },
     palette: {
         background: {
-            default: lightBlue[50],
+            default: "#FAF8ED"
         },
         primary: {
-            main: lightBlue[500],
+            main: "#F3DBDD"
         },
         secondary: {
-            main: lightBlue[50],
+            main: "#FAF8ED"
         },
         dark: {
-            main: lightBlue[900],
-        },
-        alt: {
-            main: lightBlue["A400"],
-        },
+            main: "#A8DACC",
+        }
     },
 });
 
