@@ -151,7 +151,7 @@ function MedicationRow({ row, idx }) {
                     {row.Name}
                 </TableCell>
                 <TableCell align="right">{row['FrequencyDescription']}</TableCell>
-                <TableCell align="right">{row['DayFrequency']}</TableCell>
+                {/* <TableCell align="right">{row['DayFrequency']}</TableCell> */}
                 <TableCell align="right">{row['Verification Status']}</TableCell>
                 <TableCell><IconButton>{getIcon(row['Verification Status'])}</IconButton></TableCell>
             </TableRow>
@@ -223,7 +223,7 @@ function MedicationInfo( {verificationInfo}) {
                             <TableCell />
                             <TableCell>Medication</TableCell>
                             <TableCell align="right">Dosage</TableCell>
-                            <TableCell align="right">Frequency</TableCell>
+                            {/* <TableCell align="right">Frequency</TableCell> */}
                             <TableCell></TableCell>
                             <TableCell align="right">Verified</TableCell>
                         </TableRow>

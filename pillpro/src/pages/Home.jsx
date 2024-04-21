@@ -53,7 +53,7 @@ function Home() {
     }, [imageJSON]);
 
     useEffect(() => {
-
+        console.log("Verification info updated: \n" + JSON.stringify(verificationInfo))
     }, [verificationInfo])
 
     return (
@@ -70,9 +70,9 @@ function Home() {
                 }}
                 id="main-page"
             >
-                <AudioUploader />
-                <FileUploader />
-                <MedicationInfo />
+                <AudioUploader setAudio={handleSetAudioTranscript} />
+                <FileUploader setImageData={handleSetImageData}/>
+                <MedicationInfo verificationInfo={verificationInfo}/>
                 <Footer />
             </Box>
         </Box>
