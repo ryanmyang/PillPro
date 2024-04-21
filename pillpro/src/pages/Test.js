@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import FileUploader from '../components/FileUploader';
-import { generateMedicineJSON, getGeminiResponse } from '../components/GetGeminiResponse';
+import { getGeminiResponse } from '../components/GetGeminiResponse';
+import { getGeminiResponseJSON } from '../components/GetGeminiResponseJSON';
 import GeminiFileUpload from '../components/GeminiFileUpload';
 
 
