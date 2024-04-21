@@ -4,10 +4,11 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 
 const genAI = new GoogleGenerativeAI('AIzaSyCuToUOpvZLLXEqpsiJY5KfYsOZf6ACth8');
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest"});
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest",
+generationConfig: { responseMimeType: "application/json" }});
      
 
-async function getGeminiResponse(prompt, inputText) {
+async function getGeminiResponseJSON(prompt, inputText) {
 
     try {
     const response = await model.generateContent(`${prompt}\n${inputText}`);
@@ -21,4 +22,4 @@ async function getGeminiResponse(prompt, inputText) {
 // Call the function to get the recipes
 // generateMedicineJSON(example_text)
 
-export { getGeminiResponse };
+export { getGeminiResponseJSON };

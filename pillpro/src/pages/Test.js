@@ -32,7 +32,7 @@ function Test() {
     const [medicineInfo, setMedicineInfo] = useState('');
 
     const getMedicineJSON = async () => {
-        const info = await getGeminiResponse(instructionPrompt, example_text);
+        const info = await getGeminiResponseJSON(instructionPrompt, example_text);
         setMedicineInfo(info);
     }
 
