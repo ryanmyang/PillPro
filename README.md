@@ -1,5 +1,7 @@
 # pill.ai
 
+![Uploading pillAI.png…]()
+
 ## Inspiration
 
 Imagine a patient with a chronic illness diligently follows their treatment plan, trusting their pharmacy to provide the correct medications. However, due to a mix-up in prescriptions, they receive the wrong medication, leading to severe complications and a hospitalization. This heartbreaking scenario is all too common in today's healthcare system, where human errors can have devastating consequences.
