@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import FileUploader from '../components/FileUploader';
 import { generateMedicineJSON } from '../components/textToJSON';
+import AudioUpload from '../components/AudioUpload';
 
 
 const example_text = `
@@ -42,7 +43,7 @@ function Test() {
   <div>
     <FileUploader onFileSelect={handleFile}/>
     <h1>Test {process.env.REACT_APP_GEMINI_API_KEY}</h1>
-    <button onClick={handleGenerateMedicineInfo}>Generate Medicine Info</button>
+    <AudioUpload/>
       {medicineInfo && <div><p>Generated Medicine Info:</p><pre>{medicineInfo}</pre></div>}
     </div>
 );
