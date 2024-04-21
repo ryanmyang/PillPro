@@ -1,6 +1,6 @@
 # pill.ai
 
-![Uploading pillAI.png…]()
+![pillAI](https://github.com/ryanmyang/PillPro/assets/9492646/e5677775-43ce-4cf2-85a4-cf7c90a23be7)
 
 ## Inspiration
 
