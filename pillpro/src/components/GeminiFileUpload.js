@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { fileToTranscript } from './fileToTranscript';
 
+
 function readFileAndGetGenerativePart(file) {
   return new Promise((resolve, reject) => {
     if (!file) {
       reject("No file provided");
       return;
     }
-    console.log("file found");
+    console.log("reading file, making generative part");
     const reader = new FileReader();
 
     reader.onload = function (evt) {

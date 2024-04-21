@@ -1,11 +1,13 @@
 import AudioIcon from "@mui/icons-material/KeyboardVoice";
 import { Box, List, ListItem, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import ItemCard from "./ItemCard";
 import UploadPopup from "./UploadPopup";
+import { readFileAndGetGenerativePart } from "./GeminiFileUpload";
+import { fileToTranscript } from "./fileToTranscript";
 
-function AudioUploader() {
+function AudioUploader({ setAudio }) {
     const [files, setFiles] = useState(null);
     const { acceptedFiles, fileRejections, getRootProps, getInputProps } = useDropzone({
         maxFiles: 1,
@@ -36,6 +38,36 @@ function AudioUploader() {
     const handleSubmit = () => {
         setFiles(acceptedFiles);
     };
+
+    useEffect(() => {
+        if (!files) {
+            return;
+        }
+        const audioPrompt = "Generate a transcript for this conversation between a doctor and patient";
+        
+        let promises = files.map(file => readFileAndGetGenerativePart(file));
+
+        Promise.all(promises).then((fileParts) => {
+            console.log(fileParts); // Debug: check the structure of fileParts
+            console.log("transcribing...");
+
+            // Handle potentially asynchronous fileToTranscript
+            return Promise.all(fileParts.map(filePart => {
+                return fileToTranscript(audioPrompt, filePart).then(transcript => {
+                    console.log(JSON.stringify(filePart)); // Debug: check file part
+                    return transcript;
+                });
+            }));
+        })
+        .then(transcripts => {
+            let combinedTranscript = transcripts.join("\n");
+            console.log("Set audio to " + combinedTranscript);
+            setAudio(combinedTranscript);
+        })
+        .catch((error) => {
+            console.error('Error processing files:', error);
+        });
+    }, [files]);
 
     return (
         <ItemCard>

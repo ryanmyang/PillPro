@@ -1,11 +1,14 @@
 import PhotoIcon from "@mui/icons-material/AddPhotoAlternate";
 import { Box, List, ListItem, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import ItemCard from "./ItemCard";
 import UploadPopup from "./UploadPopup";
+import { readFileAndGetGenerativePart } from "./GeminiFileUpload";
+import { fileToJSON } from "./fileToJSON";
+import { json } from "react-router-dom";
 
-function ImageUploader() {
+function ImageUploader( { setImageData }) {
     const [files, setFiles] = useState(null);
     const { acceptedFiles, fileRejections, getRootProps, getInputProps } = useDropzone({
         accept: {
@@ -38,6 +41,52 @@ function ImageUploader() {
     const handleSubmit = () => {
         setFiles(acceptedFiles);
     };
+
+    useEffect(() => {
+        if (!files) {
+            return;
+        }
+        const imageToJSONPrompt = "These images were the medications I received from the pharmacist. List all medications I received from the pharmacist using the following JSON schema: [{'type': 'object','properties': {'Name': {'type': 'string'}, 'Full description': {'type': 'string'},''WeeklyFrequency': {'type': 'integer'},'DayFrequency': {'type': 'integer'},'FrequencyDescription': {'type': 'string'},'SideEffects': {'type': 'string'}]";
+        
+        let promises = files.map(file => readFileAndGetGenerativePart(file));
+
+        Promise.all(promises).then((fileParts) => {
+            console.log(fileParts); // Debug: check the structure of fileParts
+            console.log("transcribing...");
+
+            // Handle potentially asynchronous fileToJSON
+            return Promise.all(fileParts.map(filePart => {
+                return fileToJSON(imageToJSONPrompt, filePart).then(medicineObject => {
+                    console.log(JSON.stringify(filePart)); // Debug: check file part
+                    return medicineObject;
+                });
+            }));
+        })
+        .then(medicineObjects => {
+            const cleanedObjects = medicineObjects.map(jsonString => parseJSONString(jsonString)); 
+            const flattened = cleanedObjects.flat()
+            console.log("Set image objects to " + JSON.stringify(flattened));
+            setImageData(cleanedObjects);
+        })
+        .catch((error) => {
+            console.error('Error processing files:', error);
+        });
+    }, [files]);
+
+    function parseJSONString(jsonString) {
+        console.log(`Parsing JSON string ${jsonString}`)
+        jsonString = jsonString.replace(/.*?```json/gs, '').trim();
+        jsonString = jsonString.replace(/```.*$/gs, '').trim();
+        // Parse the JSON string into an actual JavaScript object
+        let jsonArray;
+        try {
+            jsonArray = JSON.parse(jsonString);
+            console.log("Parsed JSON Array:", jsonArray);
+            return jsonArray;
+        } catch (error) {
+            console.error("Failed to parse JSON:", error);
+        }
+    }
 
     return (
         <ItemCard>
