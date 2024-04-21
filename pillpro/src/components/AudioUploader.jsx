@@ -1,9 +1,27 @@
 import AudioIcon from "@mui/icons-material/KeyboardVoice";
 import { Box, List, ListItem, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import ItemCard from "./ItemCard";
 import UploadPopup from "./UploadPopup";
+
+/**
+ * Present an audio file visually, which is simply its name and size.
+ */
+const DisplayAudioFiles = ({ files }) => {
+    // console.log(files);
+    return (
+        <List>
+            {files?.map((file) => (
+                <ListItem key={file.name}>
+                    <Typography>
+                        {file.name} ({(file.size / 10 ** 6).toFixed(2)}MB)
+                    </Typography>
+                </ListItem>
+            ))}
+        </List>
+    );
+};
 
 function AudioUploader() {
     const [files, setFiles] = useState(null);
@@ -18,24 +36,15 @@ function AudioUploader() {
         },
     });
 
-    const acceptedFileItems = acceptedFiles.map((file) => (
-        <ListItem key={file.path}>
-            <Typography>
-                {file.path} - {file.size} bytes
-            </Typography>
-        </ListItem>
-    ));
-
-    const handleReset = () => {
-        setFiles(null);
+    const handleCancel = () => {
         acceptedFiles.splice(0, acceptedFiles.length);
         fileRejections.splice(0, fileRejections.length);
-        acceptedFileItems.splice(0, acceptedFileItems.length);
     };
 
     const handleSubmit = () => {
-        setFiles(acceptedFiles);
+        setFiles(acceptedFiles.map((f) => new File([f], f.name, { type: f.type })));
     };
+    useEffect(() => handleCancel(), [files]);
 
     return (
         <ItemCard>
@@ -46,23 +55,32 @@ function AudioUploader() {
                 excepturi ullam voluptas nobis qui. Dolorem, in molestias.
             </Typography>
 
-            <UploadPopup icon={<AudioIcon />} handleSubmit={handleSubmit} handleReset={handleReset}>
-                <Box {...getRootProps({ className: "dropzone" })}>
-                    <Typography variant="h4">Upload your consultation</Typography>
+            <UploadPopup
+                icon={<AudioIcon />}
+                handleSubmit={handleSubmit}
+                handleCancel={handleCancel}
+            >
+                <Typography variant="h4">Upload your consultation</Typography>
+                <Box {...getRootProps()} sx={{ border: "1px dashed grey", my: "1rem", px: "1rem" }}>
                     <input {...getInputProps()} />
                     <p>Drag and drop an audio file here, or click to select a file</p>
                     <em>(Only valid audio filetypes (mp3, m4a, wav) files are accepted)</em>
                     <aside>
                         {/* {console.log(acceptedFiles)} */}
-                        <List>{acceptedFileItems}</List>
+                        {/* <List>{acceptedFileItems}</List> */}
+                        <DisplayAudioFiles files={acceptedFiles} />
                         {fileRejections.length > 0 && (
-                            <Typography variant="caption">Filetype is not supported</Typography>
+                            <Typography variant="caption">
+                                Filetype is not supported or more than one audio file uploaded.
+                                Please ensure only one audio file is uploaded.
+                            </Typography>
                         )}
                     </aside>
                 </Box>
             </UploadPopup>
-            {files && files.map((file) => <Typography>{file.path}</Typography>)}
-            {console.log(files)}
+            {/* {files && files.map((file) => <Typography>{file.path}</Typography>)}
+            {console.log(files)} */}
+            <DisplayAudioFiles files={files} />
         </ItemCard>
     );
 }
