@@ -9,7 +9,7 @@ import WelcomeBar from "../components/WelcomeBar";
 
 function Home() {
     const [audioTranscript, setAudioTranscript] = useState('');
-    const [imageJSON, setImageJSON] = useState({});
+    const [imageJSON, setImageJSON] = useState(null);
 
     const handleSetAudioTranscript = (data) => {
         setAudioTranscript(data);

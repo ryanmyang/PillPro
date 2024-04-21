@@ -8,7 +8,19 @@ const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest",
 generationConfig: { responseMimeType: "application/json" }});
      
 async function fileToJSON(prompt, generativeFilePart) {
-    const model = genAI.getGenerativeModel({ model: "models/gemini-1.5-pro-latest"});
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest",
+generationConfig: { responseMimeType: "application/json" }, safetySettings: [
+    { category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_NONE' },
+    {
+      category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT',
+      threshold: 'BLOCK_NONE'
+    },
+    { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_NONE' },
+    {
+      category: 'HARM_CATEGORY_DANGEROUS_CONTENT',
+      threshold: 'BLOCK_NONE'
+    }
+    ]});
     
     const fileParts = [generativeFilePart];
     console.log(`Calling gemini with file ${JSON.stringify(fileParts)}`)

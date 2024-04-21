@@ -172,7 +172,7 @@ function MedicationInfo() {
                 console.error('Error getting verification:', error);
             }
         };
-        getVerification();
+        // getVerification();
     }, []);
 
     // Function to parse the JSON text file into an array of objects
